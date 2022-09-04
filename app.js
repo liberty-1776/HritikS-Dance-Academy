@@ -28,7 +28,7 @@ app.use(express.static('static')) // For serving static files
 app.use(express.urlencoded({extended: true}));
 
 // PUG SPECIFIC STUFF
-app.set('view engine', 'pug') // Set the template engine as pug
+app.set('view engine', 'pug','html') // Set the template engine as pug
 app.set('views', path.join(__dirname, 'views')) // Set the views directory
 
 
@@ -41,15 +41,15 @@ app.get('/contact',(req,res)=>{
 });
 
 app.post('/contact',(req,res)=>{
-    var myData = new Contact(req.body);
-    myData.save().then(()=>{
-        res.status(200).render(path.join('contact.pug'));
-    }).catch(()=>{
-        res.status(400).send("The item was not able to save to the database");
-    });
-    //res.status(200).render(path.join('contact.pug'));
-});
+    if (req.method === 'POST') {
+        var myData = new Contact(req.body);
+        myData.save();
+        res.status(200).render(path.join('formSubmission.pug'));
+    }else{
+        res.status(200).render(path.join('home.pug'))
+    }
 
+});
 
 
 //START THE SERVER 
