@@ -1,1 +1,1 @@
-Hritik's Dance Academy
+## Hritik's Dance Academy
