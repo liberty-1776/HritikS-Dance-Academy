@@ -36,6 +36,7 @@ app.get('/',(req,res)=>{
     res.status(200).render(path.join('home.pug'));
 });
 
+
 app.get('/contact',(req,res)=>{
     res.status(200).render(path.join('contact.pug'));
 });
@@ -50,7 +51,6 @@ app.post('/contact',(req,res)=>{
     }
 
 });
-
 
 //START THE SERVER 
 app.listen(port,()=>{
